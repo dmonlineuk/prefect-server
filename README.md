@@ -43,4 +43,5 @@ helm install prefect-server prefect/prefect-server \
   -n prefect-server \
   --values server-values.yaml
 
+kubectl -n prefect-server port-forward svc/prefect-server 4200:4200
 ```
