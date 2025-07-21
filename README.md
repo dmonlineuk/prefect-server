@@ -20,6 +20,7 @@ prefect self-service is working with basic auth via
 
 ```bash
 helm repo add prefect https://prefecthq.github.io/prefect-helm
+helm repo add postgres https://raw.githubusercontent.com/hansehe/postgres-helm/master/helm/charts/postgres
 helm repo update
 
 kubectl create namespace prefect-server
@@ -28,6 +29,10 @@ kubectl config set-context --current --namespace=prefect
 kubectl create secret generic server-auth-secret \
   -n prefect-server \
   --from-literal auth-string='admin:P4s5W0rd'
+
+kubectl create secret generic prefect-db \
+  -n prefect-server \
+  --from-literal="connection-string=postgresql+asyncpg://prefect:P4s5W0rd@localhost:5432/prefect_db?ssl=require"
 ```
 
 server-values.yaml:
