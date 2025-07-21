@@ -1,0 +1,4 @@
+server:
+  basicAuth:
+    enabled: true
+    existingSecret: server-auth-secret
